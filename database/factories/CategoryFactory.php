@@ -17,10 +17,10 @@ class CategoryFactory extends Factory
      */
     public function definition(): array
     {
-        $title = $this->faker->word(20);
+        $name = $this->faker->unique()->word(20);
         return [
-            'title'     =>      $title,
-            'slug'      =>      Str::slug($title),
+            'name'     =>      $name,
+            'slug'      =>      Str::slug($name),
         ];
     }
 }
