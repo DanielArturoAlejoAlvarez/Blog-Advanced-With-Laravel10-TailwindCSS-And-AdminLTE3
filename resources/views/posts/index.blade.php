@@ -10,7 +10,11 @@
                <div class="w-full h-full px-8 flex flex-col justify-center">
                     <div>
                         @foreach ($post->tags as $tag)
-                            <a class="inline-block bg-gray-600 text-white
+                            <a style="background-color:{{ $tag->colour}};" class="inline-block bg-gray-600 @if ($tag->colour == 'yellow')
+                               text-gray-800 
+                            @else 
+                            text-white
+                            @endif
                              h-6 px-3 rounded-full" href="">{{$tag->name}}</a>
                         @endforeach
                     </div>
