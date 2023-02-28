@@ -18,7 +18,7 @@
                              h-6 px-3 rounded-full" href="">{{$tag->name}}</a>
                         @endforeach
                     </div>
-                    <h1 class="text-4xl text-white leading-8 font-bold"><a href="">{{$post->title}}</a></h1>
+                    <h1 class="text-4xl text-white leading-8 font-bold"><a href="{{route('posts.show', $post)}}">{{$post->title}}</a></h1>
                </div>
             </article> 
         @endforeach
