@@ -18,8 +18,8 @@
                                  h-6 px-3 rounded-full" href="">{{$tag->name}}</a>
                             @endforeach --}}
 
-                            <div class="grid grid-cols-3 gap-6">
-                                <div class="col-span-2">
+                            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                                <div class="lg:col-span-2">
                                     <figure>
                                         <img class="w-full h-80 object-center object-cover" src="{{Storage::url($post->image->url)}}" alt="">
                                     </figure>
