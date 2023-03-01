@@ -1,8 +1,7 @@
-<?php 
+<?php
 
-
+use App\Http\Controllers\Admin\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('', function(){
-    return 'Welcome ADMIN';
-});
+//Adding prefix in RouteServiceProvider to 'admin'
+Route::get('', [HomeController::class, 'index']);
