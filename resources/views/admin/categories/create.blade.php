@@ -13,10 +13,16 @@
             <div class="form-group">
                 {!! Form::label('name', 'NAME:') !!}
                 {!! Form::text('name', null, ['class'=>'form-control','placeholder'=>'Enter the category name...']) !!}
+                @error('name')
+                <span class="text-danger">{{$message}}</span>
+                @enderror            
             </div>
             <div class="form-group">
                 {!! Form::label('slug', 'SLUG:') !!}
-                {!! Form::text('slug', null, ['class'=>'form-control','placeholder'=>'Enter the category slug...']) !!}
+                {!! Form::text('slug', null, ['class'=>'form-control','placeholder'=>'Enter the category slug...','readonly']) !!}
+                @error('slug')
+                <span class="text-danger">{{$message}}</span>
+                @enderror 
             </div>
 
             {!! Form::submit('CREATE CATEGORY', ['class'=>'btn btn-primary']) !!}

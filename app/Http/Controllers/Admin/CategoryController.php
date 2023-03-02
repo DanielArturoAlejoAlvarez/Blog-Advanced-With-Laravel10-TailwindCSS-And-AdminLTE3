@@ -32,7 +32,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)//: RedirectResponse
     {
-        
+        $request->validate([
+            'name'  =>  'required',
+            'slug'  =>  'required|unique:categories',
+        ]);
+
+        $category = Category::create($request->all());
+
+        return redirect()
+                ->route('admin.categories.edit', $category)
+                ->with('info','Category saved successfully!');
     }
 
     /**
