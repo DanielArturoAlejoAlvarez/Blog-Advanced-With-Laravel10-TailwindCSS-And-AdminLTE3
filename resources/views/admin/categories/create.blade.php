@@ -7,13 +7,37 @@
 @stop
 
 @section('content')
-   
+   <div class="card">
+    <div class="card-body">
+        {!! Form::open(['route'=>'admin.categories.store']) !!}
+            <div class="form-group">
+                {!! Form::label('name', 'NAME:') !!}
+                {!! Form::text('name', null, ['class'=>'form-control','placeholder'=>'Enter the category name...']) !!}
+            </div>
+            <div class="form-group">
+                {!! Form::label('slug', 'SLUG:') !!}
+                {!! Form::text('slug', null, ['class'=>'form-control','placeholder'=>'Enter the category slug...']) !!}
+            </div>
+
+            {!! Form::submit('CREATE CATEGORY', ['class'=>'btn btn-primary']) !!}
+        {!! Form::close() !!}
+    </div>
+   </div>
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+    
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+   <script src="{{asset('vendor/jQuery-Plugin-stringToSlug-1.3/jquery.stringToSlug.min.js')}}"></script>
+    <script>
+        $(document).ready(function(){
+            $('#name').stringToSlug({
+                setEvents: 'keyup keydown blur',
+                getPut: '#slug',
+                space: '-'
+            })
+        })
+    </script>
 @stop
