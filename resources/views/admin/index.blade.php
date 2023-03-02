@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Mediasoft | ADMIN Panel')
+@section('title', 'MEDIASOFT ADMIN')
 
 @section('content_header')
     <h1>ADMIN Panel</h1>
