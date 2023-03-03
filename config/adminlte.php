@@ -326,6 +326,11 @@ return [
             'icon' => 'fab fa-fw fa-buffer',
         ],
         [
+            'text' => 'tags',
+            'route'=> 'admin.tags.index',
+            'icon' => 'fas fa-fw fa-tags',
+        ],
+        [
             'text' => 'change_password',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
