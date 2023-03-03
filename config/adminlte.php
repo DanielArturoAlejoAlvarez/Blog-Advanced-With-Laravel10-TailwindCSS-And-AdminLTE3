@@ -333,6 +333,12 @@ return [
             'active'=> ['admin/tags*'],
         ],
         [
+            'text' => 'posts',
+            'route'=> 'admin.posts.index',
+            'icon' => 'fas fa-fw fa-newspaper',
+            'active'=> ['admin/posts*'],
+        ],
+        [
             'text' => 'change_password',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
@@ -545,5 +551,5 @@ return [
     |
     */
 
-    'livewire' => false,
+    'livewire' => true,//false
 ];
