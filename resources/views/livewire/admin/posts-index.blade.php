@@ -5,9 +5,11 @@
         </div>
     @endif
     <div class="card">
+        {{-- {{$search}} --}}
         <div class="card-header">
-            <a class="btn btn-secondary" href="{{route('admin.posts.create')}}">ADD POST</a>
+            <input wire:model="search" type="text" class="form-control" placeholder="Enter title of post...">
         </div>
+        @if ($posts->count())
         <div class="card-body">
             <table class="table table-striped">
                 <thead>
@@ -40,5 +42,10 @@
         <div class="card-footer">
             {{$posts->links()}}
         </div>
+        @else
+            <div class="card-body">
+                <h4><strong>No such record available.</strong></h4>
+            </div>
+        @endif
     </div>    
 </div>
