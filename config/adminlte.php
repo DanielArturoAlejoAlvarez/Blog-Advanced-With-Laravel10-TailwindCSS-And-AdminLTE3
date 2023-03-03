@@ -324,11 +324,13 @@ return [
             'text' => 'categories',
             'route'=> 'admin.categories.index',
             'icon' => 'fab fa-fw fa-buffer',
+            'active'=> ['admin/categories*'],
         ],
         [
             'text' => 'tags',
             'route'=> 'admin.tags.index',
-            'icon' => 'fas fa-fw fa-tags',
+            'icon' => 'fas fa-fw fa-bookmark',
+            'active'=> ['admin/tags*'],
         ],
         [
             'text' => 'change_password',
