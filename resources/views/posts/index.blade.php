@@ -1,7 +1,7 @@
 <x-app-layout>
     
 
-    {{-- <div class="container py-8 px-8">
+    <div class="container py-8 px-8">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach ($posts as $post)
                 <article class="@if ($loop->first) md:col-span-2 @endif w-full h-80 bg-center bg-cover"
@@ -22,8 +22,13 @@
                     </div>
                 </article>
             @endforeach
-        </div>      
-    </div> --}}
+
+           
+        </div> 
+        <div class="col-4">
+            {{$posts->links()}}
+        </div>     
+    </div>
 
 
 </x-app-layout>

@@ -73,7 +73,7 @@
                         @foreach ($categories as $category)
                         <a
                         href="{{route('posts.category', $category)}}"
-                        class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                        class="bg-gray-900 text-xl text-white px-3 py-2 rounded-md text-sm font-medium"
                         aria-current="page"
                         >
                             {{$category->name}}
@@ -189,11 +189,11 @@
             <div>
                 <a
                 href="{{route('login')}}"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                class="text-gray-300 bg-red-600 text-xl hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >Login</a>
                 <a
                 href="{{route('register')}}"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                class="text-gray-300 bg-zinc-600 text-xl hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >Register</a>
             </div>
             @endauth

@@ -7,7 +7,7 @@
     <div class="card">
         {{-- {{$search}} --}}
         <div class="card-header">
-            <input wire:model="search" type="text" class="form-control" placeholder="Enter title of post...">
+            <input wire:model="search" type="text" class="form-control" placeholder="Search Post Title...">
         </div>
         @if ($posts->count())
         <div class="card-body">

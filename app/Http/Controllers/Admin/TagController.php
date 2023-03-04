@@ -100,6 +100,8 @@ class TagController extends Controller
     public function destroy(Tag $tag)//: RedirectResponse
     {
         $tag->delete();
-        return redirect()->route('admin.tags.index');
+        return redirect()
+                    ->route('admin.tags.index')
+                    ->with('info','Tag deleted successfully!');;
     }
 }
