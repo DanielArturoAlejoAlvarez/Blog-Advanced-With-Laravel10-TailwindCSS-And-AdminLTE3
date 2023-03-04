@@ -9,6 +9,7 @@ use App\Models\Tag;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Http\Requests\StorePostRequest;
 
 class PostController extends Controller
 {
@@ -33,17 +34,8 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)//: RedirectResponse
+    public function store(StorePostRequest $request)//: RedirectResponse
     {
-        $request->validate([
-            'title'         =>      'required',
-            'slug'          =>      'required|unique:posts',
-            'excerpt'       =>      'required',
-            'body'          =>      'required',
-            'category_id'   =>      'required',
-            'user_id'       =>      'required',
-        ]);
-
         $post = Post::create($request->all());
         return redirect()
                     ->route('admin.posts.edit', $post)
@@ -73,15 +65,6 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)//: RedirectResponse
     {
-        $request->validate([
-            'title'         =>      'required',
-            'slug'          =>      'required|unique:posts',
-            'excerpt'       =>      'required',
-            'body'          =>      'required',
-            'category_id'   =>      'required',
-            'user_id'       =>      'required',
-        ]);
-
         $post->update($request->all());
         return redirect()
                     ->route('admin.posts.edit', $post)
