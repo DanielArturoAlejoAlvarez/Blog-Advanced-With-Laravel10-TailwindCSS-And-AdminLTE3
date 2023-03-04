@@ -46,10 +46,31 @@
             </div>
             <div class="form-group">
                 {!! Form::label('excerpt', 'EXCERPT:') !!}
-                {!! Form::text('excerpt', null, ['class'=>'form-control','placeholder'=>'Enter the post title...']) !!}
+                {!! Form::textarea('excerpt', null, ['class'=>'form-control']) !!}
                 @error('excerpt')
                 <span class="text-danger">{{$message}}</span>
                 @enderror            
+            </div>
+            <div class="form-group">
+                {!! Form::label('body', 'BODY:') !!}
+                {!! Form::textarea('body', null, ['class'=>'form-control']) !!}
+                @error('body')
+                <span class="text-danger">{{$message}}</span>
+                @enderror            
+            </div>
+
+            <div class="form-group">
+                {!! Form::label('status', 'STATUS:') !!}
+                <div>
+                    <label>
+                        {!! Form::radio('status', 1, true) !!}
+                        Draft
+                    </label>
+                    <label class="ml-2">
+                        {!! Form::radio('status', 2, false) !!}
+                        Published
+                    </label>
+                </div>
             </div>
 
             {!! Form::submit('CREATE POST', ['class'=>'btn btn-primary']) !!}
@@ -63,14 +84,26 @@
 @stop
 
 @section('js')
-   <script src="{{asset('vendor/jQuery-Plugin-stringToSlug-1.3/jquery.stringToSlug.min.js')}}"></script>
-    <script>
-        $(document).ready(function(){
-            $('#title').stringToSlug({
-                setEvents: 'keyup keydown blur',
-                getPut: '#slug',
-                space: '-'
+    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+    <script src="{{asset('vendor/jQuery-Plugin-stringToSlug-1.3/jquery.stringToSlug.min.js')}}"></script>
+        <script>
+            $(document).ready(function(){
+                $('#title').stringToSlug({
+                    setEvents: 'keyup keydown blur',
+                    getPut: '#slug',
+                    space: '-'
+                })
             })
-        })
-    </script>
+
+            ClassicEditor
+            .create( document.querySelector( '#excerpt' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+            ClassicEditor
+            .create( document.querySelector( '#body' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+        </script>
 @stop
