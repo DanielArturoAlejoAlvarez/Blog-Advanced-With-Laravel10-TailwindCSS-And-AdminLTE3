@@ -10,6 +10,9 @@
    <div class="card">
     <div class="card-body">
         {!! Form::open(['route'=>'admin.posts.store','autocomplete'=>'off']) !!}
+            
+            {!! Form::hidden('user_id', auth()->user()->id) !!}
+        
             <div class="form-group">
                 {!! Form::label('title', 'TITLE:') !!}
                 {!! Form::text('title', null, ['class'=>'form-control','placeholder'=>'Enter the post title...']) !!}
@@ -41,6 +44,7 @@
                 
                 @endforeach
                 @error('tags')
+                <br>
                 <span class="text-danger">{{$message}}</span>
                 @enderror 
             </div>
@@ -71,6 +75,9 @@
                         Published
                     </label>
                 </div>
+                @error('status')
+                <span class="text-danger">{{$message}}</span>
+                @enderror  
             </div>
 
             {!! Form::submit('CREATE POST', ['class'=>'btn btn-primary']) !!}
