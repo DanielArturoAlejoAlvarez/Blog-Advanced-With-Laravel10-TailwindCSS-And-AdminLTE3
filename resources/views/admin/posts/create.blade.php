@@ -48,6 +48,20 @@
                 <span class="text-danger">{{$message}}</span>
                 @enderror 
             </div>
+            <div class="row mb-3 ">
+                <div class="col">
+                    <div class="image-wrapper">
+                        <img id="picture" class="shadow-lg w-full h-72 object-cover object-center" src="https://cdn.pixabay.com/photo/2016/06/13/09/57/meeting-1453895_960_720.png" alt="">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        {!! Form::label('file', 'IMAGE:') !!}
+                        {!! Form::file('file', ['class'=>'form-control-file']) !!}
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti eligendi atque illum, voluptate provident quisquam ex, debitis expedita delectus in nisi sint autem. Soluta enim cum aut distinctio. Expedita, officia?</p>
+                </div>
+            </div>
             <div class="form-group">
                 {!! Form::label('excerpt', 'EXCERPT:') !!}
                 {!! Form::textarea('excerpt', null, ['class'=>'form-control']) !!}
@@ -87,7 +101,18 @@
 @stop
 
 @section('css')
-    
+    <style>
+        .image-wrapper {
+        position: relative;
+        padding-bottom: 56.25%;
+    }
+    .image-wrapper img {
+        position: absolute;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+    </style>
 @stop
 
 @section('js')
@@ -112,5 +137,16 @@
             .catch( error => {
                 console.error( error );
             } );
+
+            //Changed Image PRE-Visualization from Form Post
+            document.getElementById('file').addEventListener('change', changeImagePicture);
+            function changeImagePicture(e){
+                var file = e.target.files[0];
+                var reader = new FileReader();
+                reader.onload = (ev)=>{
+                    document.getElementById('picture').setAttribute('src', ev.target.result);
+                }
+                reader.readAsDataURL(file);
+            }
         </script>
 @stop
