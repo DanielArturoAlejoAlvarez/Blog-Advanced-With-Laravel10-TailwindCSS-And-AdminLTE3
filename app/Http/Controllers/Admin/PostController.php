@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -37,7 +38,17 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)//: RedirectResponse
     {
+        /*return Storage::put('public/posts', $request->file('file'));*/
         $post = Post::create($request->all());
+
+        if ($request->file('file')) {
+            $url = Storage::put('public/posts', $request->file('file'));
+
+            $post->image()->create([
+                'url'   =>  $url
+            ]);
+        }
+
         if ($request->tags) {
             $post->tags()->attach($request->tags);
         }
@@ -61,7 +72,7 @@ class PostController extends Controller
     {
         $categories = Category::pluck('name','id');
         $tags = Tag::all();
-        return view('admin.posts.create', compact('post','categories','tags'));
+        return view('admin.posts.edit', compact('post','categories','tags'));
     }
 
     /**
