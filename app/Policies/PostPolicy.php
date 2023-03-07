@@ -25,7 +25,7 @@ class PostPolicy
         }
     }
 
-    public function published(User $user, Post $post)
+    public function published(?User $user, Post $post)  //$user paramether optional to users no authenticated from post show view
     {
         if ($post->status == 2) {
             return true;
