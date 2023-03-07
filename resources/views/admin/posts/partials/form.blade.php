@@ -39,9 +39,7 @@
 <div class="row mb-3 ">
     <div class="col">
         <div class="image-wrapper">
-            
-
-            @if ($post->image)
+            @if (@isset($post->image))
             <img id="picture" class="shadow-lg w-full h-72 object-cover object-center"
             src="{{Storage::url($post->image->url)}}" alt="{{$post->title}}"> 
             @else

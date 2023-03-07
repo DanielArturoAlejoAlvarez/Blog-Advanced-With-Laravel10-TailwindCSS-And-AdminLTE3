@@ -9,8 +9,7 @@ use App\Models\Tag;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Http\Requests\StorePostRequest;
-use App\Http\Requests\UpdatePostRequest;
+use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -36,7 +35,7 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePostRequest $request)//: RedirectResponse
+    public function store(PostRequest $request)//: RedirectResponse
     {
         /*return Storage::put('public/posts', $request->file('file'));*/
         $post = Post::create($request->all());
@@ -78,9 +77,27 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePostRequest $request, Post $post)//: RedirectResponse
+    public function update(PostRequest $request, Post $post)//: RedirectResponse
     {
         $post->update($request->all());
+        if ($request->file('file')) {
+            $url = Storage::put('public/posts', $request->file('file'));
+            
+            if ($post->image) {
+                Storage::delete($post->image->url);
+                $post->image->update([
+                    'url'   =>  $url
+                ]);
+            }else{
+                $post->image()->create([
+                    'url'   =>  $url
+                ]);
+            }
+        }
+        if ($request->tags) {
+            $post->tags()->attach($request->tags);
+        }
+        
         return redirect()
                     ->route('admin.posts.edit', $post)
                     ->with('info','Post updated successfully!');
