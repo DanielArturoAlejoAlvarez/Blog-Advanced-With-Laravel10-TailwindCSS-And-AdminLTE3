@@ -15,9 +15,7 @@
     <div class="card">
         <div class="card-body">
             {!! Form::model($post, ['route'=>['admin.posts.update', $post], 'autocomplete' => 'off', 'files' => true, 'method'=>'put']) !!}
-            {{-- Config user_id with user authenticated --}}
-            {!! Form::hidden('user_id', auth()->user()->id) !!}
-
+            
             @include('admin.posts.partials.form')
 
             {!! Form::submit('UPDATE POST', ['class'=>'btn btn-primary']) !!}

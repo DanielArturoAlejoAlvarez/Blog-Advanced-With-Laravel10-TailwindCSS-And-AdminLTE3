@@ -10,9 +10,8 @@
     <div class="card">
         <div class="card-body">
             {!! Form::open(['route'=>'admin.posts.store','autocomplete'=>'off','files'=>true]) !!}
-            {{-- Config user_id with user authenticated --}}
-            {!! Form::hidden('user_id', auth()->user()->id) !!}
-
+            {{-- Config user_id with user authenticated from PostObserver--}}
+            
             @include('admin.posts.partials.form')
 
             {!! Form::submit('CREATE POST', ['class'=>'btn btn-primary']) !!}
