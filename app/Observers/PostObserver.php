@@ -15,7 +15,9 @@ class PostObserver
      */
     public function creating(Post $post): void
     {
-        //Major Security in Backend with a Observer
+        //TODO:Major Security in Backend with a Observer
+        //Enter registers from console condition Boolean
+        //Use the seeders in database migrate php artisan migrate:fresh --seed
         if(!App::runningInConsole()){
             $post->user_id = auth()->user()->id;
         }        

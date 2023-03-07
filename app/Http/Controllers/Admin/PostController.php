@@ -49,6 +49,7 @@ class PostController extends Controller
         }
 
         if ($request->tags) {
+            //TODO: Here using attach method to create
             $post->tags()->attach($request->tags);
         }
         return redirect()
@@ -69,6 +70,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)//: Response
     {
+        $this->authorize('author', $post);
+
         $categories = Category::pluck('name','id');
         $tags = Tag::all();
         return view('admin.posts.edit', compact('post','categories','tags'));
@@ -79,6 +82,8 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, Post $post)//: RedirectResponse
     {
+        $this->authorize('author', $post);
+
         $post->update($request->all());
         if ($request->file('file')) {
             $url = Storage::put('public/posts', $request->file('file'));
@@ -95,6 +100,7 @@ class PostController extends Controller
             }
         }
         if ($request->tags) {
+            //TODO: Here using sync method to update
             $post->tags()->sync($request->tags);
         }
         
@@ -108,6 +114,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)//: RedirectResponse
     {
+        $this->authorize('author', $post);
+        
         $post->delete();
         return redirect()
                     ->route('admin.posts.index')
