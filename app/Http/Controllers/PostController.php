@@ -17,6 +17,7 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
+        $this->authorize('published', $post);
         //return $post;
         $filtered = Post::where('category_id',$post->category_id)
                             ->where('status',2)
