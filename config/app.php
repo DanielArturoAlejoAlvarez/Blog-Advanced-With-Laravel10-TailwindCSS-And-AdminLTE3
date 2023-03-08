@@ -197,6 +197,9 @@ return [
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
 
+        //Spatie-Permission
+        Spatie\Permission\PermissionServiceProvider::class,
+
     ],
 
     /*
