@@ -13,11 +13,13 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        //TODO: Spatie-Permission single
+        //** permission->assignRole($role); */
         User::create([
             'name'      =>  'Caspar Lee',
             'email'     =>  'casplee@yahoo.com',
             'password'  =>  bcrypt('passsword1'),
-        ]);
+        ])->assignRole('ADMIN');    //Assign a role of ADMIN to user
 
         User::factory(9)->create();
     }
