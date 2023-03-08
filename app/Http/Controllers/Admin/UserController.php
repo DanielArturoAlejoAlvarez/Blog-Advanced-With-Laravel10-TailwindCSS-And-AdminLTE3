@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index()//: Response
     {
-        //
+        return view('admin.users.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class UserController extends Controller
      */
     public function create()//: Response
     {
-        //
+        return view('admin.users.create');
     }
 
     /**
@@ -31,7 +31,10 @@ class UserController extends Controller
      */
     public function store(Request $request)//: RedirectResponse
     {
-        //
+        $user = User::create($request->all());
+        return redirect()
+                    ->route('admin.users.edit', $user)
+                    ->with('info','User saved successfully!');
     }
 
     /**
@@ -39,7 +42,7 @@ class UserController extends Controller
      */
     public function show(User $user)//: Response
     {
-        //
+        return view('admin.users.show', compact('user'));
     }
 
     /**
@@ -47,7 +50,7 @@ class UserController extends Controller
      */
     public function edit(User $user)//: Response
     {
-        //
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -55,7 +58,10 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)//: RedirectResponse
     {
-        //
+        $user->update($request->all());
+        return redirect()
+                    ->route('admin.users.edit', $user)
+                    ->with('info','User updated successfully!');
     }
 
     /**
@@ -63,6 +69,9 @@ class UserController extends Controller
      */
     public function destroy(User $user)//: RedirectResponse
     {
-        //
+        $user->delete();
+        return redirect()
+                ->route('admin.users.index')
+                ->with('info','User deleted successfully!');
     }
 }
