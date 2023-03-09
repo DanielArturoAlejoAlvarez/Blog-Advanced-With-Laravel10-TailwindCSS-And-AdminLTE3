@@ -3,6 +3,9 @@
 @section('title', 'Category List')
 
 @section('content_header')
+    @can('admin.categories.create')
+        <a href="{{route('admin.categories.create')}}" class="btn btn-secondary float-right">ADD CATEGORY</a>
+    @endcan
     <h1>Category List</h1>
 @stop
 
@@ -13,9 +16,7 @@
         </div>
     @endif
     <div class="card">
-        <div class="card-header">
-            <a class="btn btn-secondary" href="{{route('admin.categories.create')}}">ADD CATEGORY</a>
-        </div>
+        
         <div class="card-body">
             <table class="table table-striped">
                 <thead>
@@ -31,14 +32,18 @@
                         <th>{{$category->id}}</th>
                         <td>{{$category->name}}</td>
                         <td width="10px">
-                            <a href="{{route('admin.categories.edit', $category)}}" class="btn btn-warning btn-sm">EDIT</a>
+                            @can('admin.categories.edit')
+                                <a href="{{route('admin.categories.edit', $category)}}" class="btn btn-warning btn-sm">EDIT</a>
+                            @endcan
                         </td>
                         <td width="10px">    
-                            <form method="POST" action="{{route('admin.categories.destroy', $category)}}">
-                                @csrf
-                                @method('delete')
-                                <button type="submit" class="btn btn-sm btn-danger">DELETE</button>
-                            </form>
+                            @can('admin.categories.destroy')
+                                <form method="POST" action="{{route('admin.categories.destroy', $category)}}">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-sm btn-danger">DELETE</button>
+                                </form>
+                            @endcan
                         </td>
                     </tr>
                     @endforeach
