@@ -319,6 +319,12 @@ return [
             'label'       => 4,
             'label_color' => 'success',
         ],
+        [
+            'text' => 'users',
+            'route'=> 'admin.users.index',
+            'icon' => 'fas fa-fw fa-users',
+            'active'=> ['admin/users*'],
+        ],
         ['header' => 'ADMINISTRATOR'],
         [
             'text' => 'categories',
@@ -332,6 +338,7 @@ return [
             'icon' => 'fas fa-fw fa-bookmark',
             'active'=> ['admin/tags*'],
         ],
+        ['header' => 'BLOG OPTIONS'],
         [
             'text' => 'posts',
             'route'=> 'admin.posts.index',
