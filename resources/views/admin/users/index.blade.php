@@ -3,7 +3,6 @@
 @section('title', 'User List')
 
 @section('content_header')
-    <a href="{{route('admin.users.create')}}" class="btn btn-secondary float-right">ADD USER</a>
     <h1>User List</h1>
 @stop
 
