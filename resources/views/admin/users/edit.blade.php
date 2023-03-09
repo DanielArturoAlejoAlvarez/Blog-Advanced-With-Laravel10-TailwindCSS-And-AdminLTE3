@@ -1,58 +1,39 @@
 @extends('adminlte::page')
 
-@section('title', 'Edit Category')
+@section('title', 'Edit User')
 
 @section('content_header')
-<h1>Edit Category</h1>
+    <h1>Assign Role</h1>
 @stop
 
-    @section('content')
-    @if(session('info'))
-        <div class="alert alert-success">
-            <strong>{{ session('info') }}</strong>
-        </div>
-    @endif
-    <div class="card">
-        <div class="card-body">
-            {!! Form::model($category, ['route'=>['admin.categories.store', $category], 'method'=>'put']) !!}
-            <div class="form-group">
-                {!! Form::label('name', 'NAME:') !!}
-                {!! Form::text('name', null, ['class'=>'form-control','placeholder'=>'Enter the category name...']) !!}
-                @error('name')
-                    <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-            <div class="form-group">
-                {!! Form::label('slug', 'SLUG:') !!}
-                {!! Form::text('slug', null, ['class'=>'form-control','placeholder'=>'Enter the category
-                slug...','readonly']) !!}
-                @error('slug')
-                    <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
+@section('content')
 
-            {!! Form::submit('UPDATE CATEGORY', ['class'=>'btn btn-primary']) !!}
-            {!! Form::close() !!}
-        </div>
+@if(session('info'))
+    <div class="alert alert-success">
+        <strong>{{ session('info') }}</strong>
     </div>
-    @stop
+@endif
 
-        @section('css')
+<div class="card">
+    <div class="card-body">
+        <div class="form-group">
+            {!! Form::label('name', 'NAME:') !!}
+            {!! Form::text('name', $user->name, ['class'=>'form-control', 'readonly']) !!}
+        </div>
+        {!! Form::model($user, ['route'=>['admin.users.update', $user], 'autocomplete' => 'off', 'method'=>'put']) !!}
+        
+        @include('admin.users.partials.form')
 
-        @stop
+        {!! Form::submit('ASSIGN ROLE', ['class'=>'btn btn-primary']) !!}
+        {!! Form::close() !!}
+    </div>
+</div>
+@stop
 
-            @section('js')
-            <script
-                src="{{ asset('vendor/jQuery-Plugin-stringToSlug-1.3/jquery.stringToSlug.min.js') }}">
-            </script>
-            <script>
-                $(document).ready(function () {
-                    $('#name').stringToSlug({
-                        setEvents: 'keyup keydown blur',
-                        getPut: '#slug',
-                        space: '-'
-                    })
-                })
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
 
-            </script>
-            @stop
+@section('js')
+    <script> console.log('Hi!'); </script>
+@stop

@@ -27,15 +27,9 @@
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
                         <td width="10px">
-                            <a href="{{route('admin.users.edit', $user)}}" class="btn btn-warning btn-sm">EDIT</a>
+                            <a href="{{route('admin.users.edit', $user)}}" class="btn btn-primary btn-sm">EDIT</a>
                         </td>
-                        <td width="10px">    
-                            <form method="POST" action="{{route('admin.users.destroy', $user)}}">
-                                @csrf
-                                @method('delete')
-                                <button type="submit" class="btn btn-sm btn-danger">DELETE</button>
-                            </form>
-                        </td>
+                        
                     </tr>
                     @endforeach
                 </tbody>
