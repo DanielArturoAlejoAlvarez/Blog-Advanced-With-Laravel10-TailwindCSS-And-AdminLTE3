@@ -54,10 +54,10 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)//: Response
-    {
-        return view('admin.categories.show', compact('category'));
-    }
+    // public function show(Category $category)//: Response
+    // {
+    //     return view('admin.categories.show', compact('category'));
+    // }
 
     /**
      * Show the form for editing the specified resource.

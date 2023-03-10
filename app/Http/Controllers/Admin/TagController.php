@@ -10,6 +10,13 @@ use Illuminate\Http\Response;
 
 class TagController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin.tags.index')->only('index');
+        $this->middleware('can:admin.tags.create')->only('create');
+        $this->middleware('can:admin.tags.edit')->only('edit','update');
+        $this->middleware('can:admin.tags.destroy')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -55,10 +62,10 @@ class TagController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Tag $tag)//: Response
-    {
-        return view('admin.tags.show', compact('tag'));
-    }
+    // public function show(Tag $tag)//: Response
+    // {
+    //     return view('admin.tags.show', compact('tag'));
+    // }
 
     /**
      * Show the form for editing the specified resource.
