@@ -12,7 +12,7 @@ Route::get('', [HomeController::class, 'index'])->middleware('can:admin.home')->
 
 Route::resource('users', UserController::class)->only(['index','edit','update'])->names('admin.users');
 
-Route::resource('categories', CategoryController::class)->names('admin.categories');
+Route::resource('categories', CategoryController::class)->except('show')->names('admin.categories');
 
 Route::resource('tags', TagController::class)->names('admin.tags');
 
