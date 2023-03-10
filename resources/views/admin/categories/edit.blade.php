@@ -17,7 +17,7 @@
             {!! Form::model($category, ['route'=>['admin.categories.store', $category], 'method'=>'put']) !!}
             <div class="form-group">
                 {!! Form::label('name', 'NAME:') !!}
-                {!! Form::text('name', null, ['class'=>'form-control','placeholder'=>'Enter the category name...']) !!}
+                {!! Form::text('name', null, ['class'=>'form-control']) !!}
                 @error('name')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
