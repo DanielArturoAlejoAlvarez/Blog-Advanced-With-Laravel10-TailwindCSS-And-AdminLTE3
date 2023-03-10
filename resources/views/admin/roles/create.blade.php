@@ -17,6 +17,18 @@
                 <span class="text-danger">{{$message}}</span>
                 @enderror            
             </div>
+
+            <div class="form-group">
+                <label>PERMISSIONS:</label>
+                <div>
+                    @foreach ($permissions as $permission)
+                        <label class="d-flex">
+                            {!! Form::checkbox('permissions[]', $permission->id, null, ['class'=>'mr-1']) !!}
+                            {{$permission->name}}
+                        </label>
+                    @endforeach
+                </div>
+            </div>
             
 
             {!! Form::submit('CREATE ROLE', ['class'=>'btn btn-primary']) !!}

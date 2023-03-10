@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
@@ -30,7 +30,8 @@ class RoleController extends Controller
      */
     public function create()//: Response
     {
-        return view('admin.roles.create');
+        $permissions = Permission::all();
+        return view('admin.roles.create', compact('permissions'));
     }
 
     /**
@@ -38,7 +39,14 @@ class RoleController extends Controller
      */
     public function store(Request $request)//: RedirectResponse
     {
-        //
+        $role = Role::create($request->all());
+
+        if ($request->permissions) {
+            $role->permissions()->attach($request->permissions);
+        }
+        return redirect()
+                    ->route('admin.roles.edit', $role)
+                    ->with('info','Role saved successfully!');
     }
 
     
@@ -48,7 +56,8 @@ class RoleController extends Controller
      */
     public function edit(Role $role)//: Response
     {
-        return view('admin.roles.edit', compact('role'));
+        $permissions = Permission::all();
+        return view('admin.roles.edit', compact('role','permissions'));
     }
 
     /**
