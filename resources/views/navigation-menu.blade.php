@@ -112,10 +112,11 @@
                             <form method="POST" action="{{ route('logout') }}" x-data>
                                 @csrf
 
-                                <x-dropdown-link href="{{ route('logout') }}"
+                                {{-- <x-dropdown-link href="{{ route('logout') }}"
                                          @click.prevent="$root.submit();">
                                     {{ __('Log Out') }}
-                                </x-dropdown-link>
+                                </x-dropdown-link> --}}
+                                <button type="submit">Log Out</button>
                             </form>
                         </x-slot>
                     </x-dropdown>
@@ -173,10 +174,11 @@
                 <form method="POST" action="{{ route('logout') }}" x-data>
                     @csrf
 
-                    <x-responsive-nav-link href="{{ route('logout') }}"
+                    {{-- <x-responsive-nav-link href="{{ route('logout') }}"
                                    @click.prevent="$root.submit();">
                         {{ __('Log Out') }}
-                    </x-responsive-nav-link>
+                    </x-responsive-nav-link> --}}
+                    <button type="submit">Log Out</button>
                 </form>
 
                 <!-- Team Management -->

@@ -175,14 +175,15 @@
                         > --}}
                         <form method="POST" action="{{route('logout')}}">
                             @csrf 
-                            <a
+                            {{-- <a
                             href="{{route('logout')}}"
                             class="block px-4 py-2 text-sm text-gray-700"
                             role="menuitem"
                             tabindex="-1"
                             id="user-menu-item-2"
-                            >Sign out</a
-                        >
+                            >Sign out</a --}}
+                            <button class="block px-4 py-2 text-sm text-gray-700" type="submit">Sign out</button>
+                        
                         </form>
                     </div>
                 </div>

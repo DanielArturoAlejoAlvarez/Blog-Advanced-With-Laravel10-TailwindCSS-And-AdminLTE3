@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 //Adding prefix in RouteServiceProvider to 'admin'
-Route::get('', [HomeController::class, 'index'])->name('admin.home');
+Route::get('', [HomeController::class, 'index'])->middleware('can:admin.home')->name('admin.home');
 
 Route::resource('users', UserController::class)->only(['index','edit','update'])->names('admin.users');
 
