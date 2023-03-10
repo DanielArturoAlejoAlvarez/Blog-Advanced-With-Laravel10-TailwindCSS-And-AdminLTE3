@@ -59,13 +59,6 @@ class TagController extends Controller
                     ->with('info','Tag saved successfully!');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    // public function show(Tag $tag)//: Response
-    // {
-    //     return view('admin.tags.show', compact('tag'));
-    // }
 
     /**
      * Show the form for editing the specified resource.

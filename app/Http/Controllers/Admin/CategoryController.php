@@ -51,17 +51,7 @@ class CategoryController extends Controller
                 ->with('info','Category saved successfully!');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    // public function show(Category $category)//: Response
-    // {
-    //     return view('admin.categories.show', compact('category'));
-    // }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
     public function edit(Category $category)//: Response
     {
         return view('admin.categories.edit', compact('category'));

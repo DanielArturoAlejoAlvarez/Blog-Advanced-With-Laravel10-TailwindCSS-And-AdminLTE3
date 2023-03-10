@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
+
+    public function __construct() {
+        $this->middleware('can:admin.posts.index')->only('index');
+        $this->middleware('can:admin.posts.create')->only('create');
+        $this->middleware('can:admin.posts.edit')->only('edit','update');
+        $this->middleware('can:admin.posts.destroy')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -57,14 +64,7 @@ class PostController extends Controller
                     ->with('info','Post saved successfully!');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Post $post)//: Response
-    {
-        return view('admin.posts.show', compact('post'));
-    }
-
+    
     /**
      * Show the form for editing the specified resource.
      */
