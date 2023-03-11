@@ -19,12 +19,12 @@
             </div>
 
             <div class="form-group">
-                <label>PERMISSIONS:</label>
+                <label>PERMISSIONS LIST:</label>
                 <div>
                     @foreach ($permissions as $permission)
                         <label class="d-flex">
                             {!! Form::checkbox('permissions[]', $permission->id, null, ['class'=>'mr-1']) !!}
-                            {{$permission->name}}
+                            {{$permission->description}}
                         </label>
                     @endforeach
                 </div>
