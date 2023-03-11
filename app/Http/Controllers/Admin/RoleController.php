@@ -39,10 +39,14 @@ class RoleController extends Controller
      */
     public function store(Request $request)//: RedirectResponse
     {
+        $request->validate([
+            'name'  =>  'required'
+        ]);
+
         $role = Role::create($request->all());
 
         if ($request->permissions) {
-            $role->permissions()->attach($request->permissions);
+            $role->permissions()->sync($request->permissions);
         }
         return redirect()
                     ->route('admin.roles.edit', $role)
