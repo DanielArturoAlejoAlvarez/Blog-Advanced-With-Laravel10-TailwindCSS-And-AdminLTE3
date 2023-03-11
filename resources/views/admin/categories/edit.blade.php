@@ -14,7 +14,7 @@
     @endif
     <div class="card">
         <div class="card-body">
-            {!! Form::model($category, ['route'=>['admin.categories.store', $category], 'method'=>'put']) !!}
+            {!! Form::model($category, ['route'=>['admin.categories.update', $category], 'method'=>'put']) !!}
             <div class="form-group">
                 {!! Form::label('name', 'NAME:') !!}
                 {!! Form::text('name', null, ['class'=>'form-control']) !!}

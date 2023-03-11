@@ -14,7 +14,7 @@
     @endif
     <div class="card">
         <div class="card-body">
-            {!! Form::model($role, ['route'=>['admin.roles.store', $role], 'method'=>'put']) !!}
+            {!! Form::model($role, ['route'=>['admin.roles.update', $role], 'method'=>'put']) !!}
             <div class="form-group">
                 {!! Form::label('name', 'NAME:') !!}
                 {!! Form::text('name', null, ['class'=>'form-control']) !!}
@@ -23,12 +23,12 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label>PERMISSIONS:</label>
+                <label>PERMISSIONS LIST:</label>
                 <div>
                     @foreach ($permissions as $permission)
                         <label class="d-flex">
                             {!! Form::checkbox('permissions[]', $permission->id, null, ['class'=>'mr-1']) !!}
-                            {{$permission->name}}
+                            {{$permission->description}}
                         </label>
                     @endforeach
                 </div>
