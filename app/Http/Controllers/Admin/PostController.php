@@ -12,6 +12,8 @@ use Illuminate\Http\Response;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Storage;
 
+use Illuminate\Support\Facades\Cache;
+
 class PostController extends Controller
 {
 
@@ -59,6 +61,10 @@ class PostController extends Controller
             //TODO: Here using attach method to create
             $post->tags()->attach($request->tags);
         }
+
+        //Deleting cache memory data
+        Cache::flush();
+
         return redirect()
                     ->route('admin.posts.edit', $post)
                     ->with('info','Post saved successfully!');
@@ -103,6 +109,9 @@ class PostController extends Controller
             //TODO: Here using sync method to update
             $post->tags()->sync($request->tags);
         }
+
+         //Deleting cache memory data
+         Cache::flush();
         
         return redirect()
                     ->route('admin.posts.edit', $post)
@@ -117,6 +126,10 @@ class PostController extends Controller
         $this->authorize('author', $post);
 
         $post->delete();
+
+         //Deleting cache memory data
+         Cache::flush();
+         
         return redirect()
                     ->route('admin.posts.index')
                     ->with('info','Post deleted successfully!');
