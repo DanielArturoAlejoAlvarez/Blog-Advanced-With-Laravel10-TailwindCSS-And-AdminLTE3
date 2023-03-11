@@ -13,12 +13,19 @@ class PostController extends Controller
 {
     public function index()
     {
+        //Pagination cache memory
+        if (request()->page) {
+            $key = 'posts' . request()->page;
+        }else {
+            $key = 'posts';
+        }
         //Using Cache Facade
-        if (Cache::has('posts')) {
-            $posts = Cache::get('posts');
+        if (Cache::has($key)) {
+            $posts = Cache::get($key);
         }else{
+            //Query DB
             $posts = Post::where('status',2)->latest('id')->paginate(8);
-            Cache::put('posts',$posts);
+            Cache::put($key,$posts);
         }
 
         //$posts = Post::where('status',2)->latest('id')->paginate(8);

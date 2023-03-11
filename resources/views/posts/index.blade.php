@@ -25,7 +25,7 @@
 
            
         </div> 
-        <div class="col-4">
+        <div class="col-4 mt-4">
             {{$posts->links()}}
         </div>     
     </div>
